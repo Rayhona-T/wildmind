@@ -1,0 +1,211 @@
+.sky {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(255, 209, 122, 0.35), transparent 18%),
+    linear-gradient(180deg, #10131f 0%, #17251f 55%, #0c1411 100%);
+  overflow: hidden;
+}
+
+.moon {
+  position: absolute;
+  right: 12%;
+  top: 8%;
+  width: 56px;
+  height: 56px;
+  background: #f5ebd5;
+  box-shadow: 0 0 24px #ffd17a;
+  image-rendering: pixelated;
+}
+
+.forest-layer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 48%;
+  background-repeat: repeat-x;
+  background-size: 180px 100%;
+}
+
+.forest-back {
+  height: 58%;
+  opacity: 0.7;
+  background-image: linear-gradient(transparent 40%, #0b1512 40%),
+    repeating-linear-gradient(90deg, #132019 0 28px, #0e1813 28px 52px, #1a2c24 52px 80px);
+}
+
+.forest-mid {
+  height: 42%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #1c332a 0 36px,
+    #14241e 36px 70px,
+    #20362c 70px 110px
+  );
+}
+
+.forest-front {
+  height: 22%;
+  background: #0d1612;
+}
+
+.station-building {
+  position: absolute;
+  left: 50%;
+  bottom: 18%;
+  width: 220px;
+  height: 130px;
+  transform: translateX(-50%);
+  background: #25264a;
+  border: 4px solid #f5ebd5;
+  box-shadow: 12px 12px 0 #000;
+}
+
+.station-building::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: -28px;
+  height: 28px;
+  background: #635c9b;
+}
+
+.window {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: #ffd17a;
+  box-shadow: 0 0 12px #ffd17a;
+}
+
+.window.a { left: 24px; top: 28px; }
+.window.b { left: 58px; top: 28px; }
+.window.c { right: 28px; top: 48px; }
+
+.researcher {
+  position: absolute;
+  left: calc(50% + 90px);
+  bottom: 18%;
+  width: 18px;
+  height: 34px;
+  background:
+    linear-gradient(#f5ebd5 0 8px, #b6a4e8 8px 20px, #25264a 20px 34px);
+}
+
+.fx-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.station-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.8rem;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+.station-card {
+  min-height: 160px;
+  text-align: left;
+  color: inherit;
+  background: rgba(16, 19, 31, 0.78);
+  border: 3px solid var(--line);
+  padding: 0.9rem;
+}
+
+.station-card:hover,
+.station-card:focus-visible {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+
+.station-icon {
+  width: 48px;
+  height: 32px;
+  margin-bottom: 0.5rem;
+}
+
+.sanctuary-scene {
+  position: relative;
+  min-height: 420px;
+  margin: 1rem;
+  border: 3px solid var(--line);
+  overflow: hidden;
+  background: linear-gradient(#1a2438, #17251f 60%, #12302c);
+}
+
+.habitat {
+  position: absolute;
+  opacity: 0.28;
+  filter: grayscale(0.4);
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.habitat.unlocked {
+  opacity: 1;
+  filter: none;
+}
+
+.habitat.forest { left: 6%; bottom: 12%; width: 22%; height: 48%; background: #1e3a2c; }
+.habitat.canopy { left: 28%; top: 10%; width: 24%; height: 30%; background: #2a4060; }
+.habitat.pond { right: 8%; bottom: 10%; width: 26%; height: 28%; background: #1b4a4a; border-radius: 40% 40% 20% 20%; }
+.habitat.wetland { left: 30%; bottom: 8%; width: 20%; height: 22%; background: #3a4a38; }
+.habitat.rocks { right: 32%; bottom: 28%; width: 16%; height: 20%; background: #5a5848; }
+.habitat.meadow { left: 8%; bottom: 8%; width: 18%; height: 16%; background: #4a5a30; }
+.habitat.tide { right: 6%; bottom: 6%; width: 18%; height: 14%; background: #3a3060; }
+.habitat.garden {
+  left: 42%;
+  top: 38%;
+  width: 16%;
+  height: 16%;
+  background: #ffd17a;
+  display: none;
+}
+.habitat.garden.unlocked { display: block; }
+
+.lab-layout,
+.archive-layout,
+.obs-layout,
+.exp-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.specimen-chamber {
+  min-height: 240px;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(167, 221, 245, 0.18), transparent 46%),
+    rgba(16, 19, 31, 0.7);
+  border: 4px solid #8bcbc3;
+  position: relative;
+}
+
+.silhouette {
+  width: 96px;
+  height: 96px;
+}
+
+@media (max-width: 900px) {
+  .station-grid,
+  .lab-layout,
+  .archive-layout,
+  .obs-layout,
+  .exp-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .station-building {
+    width: 160px;
+    height: 100px;
+  }
+}

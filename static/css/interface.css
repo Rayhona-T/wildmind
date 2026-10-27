@@ -1,0 +1,188 @@
+.intro-copy {
+  position: relative;
+  z-index: 2;
+  margin: auto 0 8rem;
+  padding: 0 1.5rem;
+  max-width: 720px;
+}
+
+.intro-copy h1 {
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  line-height: 0.95;
+}
+
+.subtitle {
+  color: var(--lavender);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.tagline {
+  font-size: 1.05rem;
+  max-width: 28rem;
+}
+
+.intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+}
+
+.trait-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.trait-group h3 {
+  font-size: 0.95rem;
+  color: var(--ice);
+}
+
+.toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.toggle {
+  border: 2px solid var(--line);
+  background: #1b1e33;
+  color: var(--muted);
+  padding: 0.35rem 0.55rem;
+  min-width: 6.5rem;
+}
+
+.toggle[aria-pressed="true"] {
+  color: var(--midnight);
+  background: var(--teal);
+  border-color: var(--cream);
+}
+
+.legs-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.legs-picker button[aria-pressed="true"] {
+  background: var(--gold);
+  color: var(--midnight);
+}
+
+.result-card {
+  display: none;
+  margin-top: 0.8rem;
+}
+
+.result-card.visible {
+  display: block;
+}
+
+.archive-cats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.6rem;
+}
+
+.cat-tile {
+  text-align: left;
+  border-top: 6px solid var(--accent, var(--gold));
+}
+
+.specimen-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.5rem;
+  max-height: 50vh;
+  overflow: auto;
+}
+
+.spec-tile {
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.spec-tile.discovered {
+  border-color: var(--gold);
+}
+
+.matrix {
+  display: grid;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.matrix-cell {
+  min-width: 1.7rem;
+  min-height: 1.7rem;
+  display: grid;
+  place-items: center;
+  background: #1b1e33;
+  border: 0;
+  color: var(--cream);
+}
+
+.search {
+  width: 100%;
+  background: #121526;
+  color: var(--cream);
+  border: 2px solid var(--line);
+  padding: 0.5rem 0.65rem;
+  margin-bottom: 0.7rem;
+}
+
+.journal-list {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.bars {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 8rem 1fr auto;
+  gap: 0.4rem;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.bar {
+  height: 8px;
+  background: #1b1e33;
+}
+
+.bar > span {
+  display: block;
+  height: 100%;
+  background: var(--lavender);
+}
+
+.quest.done {
+  border-color: var(--gold);
+}
+
+.mode-switch {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+}
+
+@media (max-width: 800px) {
+  .intro-copy {
+    margin-bottom: 2rem;
+  }
+
+  .bar-row {
+    grid-template-columns: 1fr;
+  }
+
+  .toggles .toggle {
+    min-width: calc(50% - 0.45rem);
+  }
+}

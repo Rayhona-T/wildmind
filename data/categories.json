@@ -1,0 +1,13 @@
+{
+  "source": "UCI Zoo dataset class labels",
+  "note": "These seven families follow the dataset scheme, not a complete modern taxonomy.",
+  "categories": [
+    {"id": 1, "name": "Mammals", "slug": "mammals", "accent": "#FFD17A", "habitat": "forest-clearing", "examples": ["lion", "elephant", "dolphin"]},
+    {"id": 2, "name": "Birds", "slug": "birds", "accent": "#A7DDF5", "habitat": "bird-canopy", "examples": ["eagle", "penguin", "flamingo"]},
+    {"id": 3, "name": "Reptiles", "slug": "reptiles", "accent": "#8CA889", "habitat": "sunlit-rocks", "examples": ["tortoise", "pitviper"]},
+    {"id": 4, "name": "Fish", "slug": "fish", "accent": "#8BCBC3", "habitat": "aquatic-pond", "examples": ["tuna", "carp", "seahorse"]},
+    {"id": 5, "name": "Amphibians", "slug": "amphibians", "accent": "#B6A4E8", "habitat": "wetland", "examples": ["frog", "newt", "toad"]},
+    {"id": 6, "name": "Insects", "slug": "insects", "accent": "#F5EBD5", "habitat": "flower-meadow", "examples": ["butterfly", "bee", "flea"]},
+    {"id": 7, "name": "Other invertebrates", "slug": "invertebrates", "accent": "#635C9B", "habitat": "tide-pool", "examples": ["octopus", "crab", "starfish"]}
+  ]
+}

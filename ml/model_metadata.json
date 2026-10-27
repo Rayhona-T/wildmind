@@ -1,0 +1,392 @@
+{
+  "evaluation_procedure": "StratifiedShuffleSplit hold-out (test_size=0.25, random_state=1) on the 101-row UCI Zoo dataset. The served model is a DecisionTreeClassifier retrained with max_depth=6 and random_state=1 on the training portion only.",
+  "caveat": "The dataset is small and imbalanced. Amphibians and reptiles have very few examples, so per-class scores can change a lot with a different split. Training accuracy is reported separately and is not test accuracy.",
+  "dataset_records": 101,
+  "feature_count": 16,
+  "n_classes": 7,
+  "train_size": 75,
+  "test_size": 26,
+  "model_name": "DecisionTreeClassifier",
+  "hyperparameters": {
+    "max_depth": 6,
+    "random_state": 1
+  },
+  "test_accuracy": 0.9615384615384616,
+  "train_accuracy": 1.0,
+  "macro_f1": 0.9319727891156463,
+  "weighted_f1": 0.9578754578754579,
+  "per_class": [
+    {
+      "class_id": 1,
+      "name": "Mammals",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 11
+    },
+    {
+      "class_id": 2,
+      "name": "Birds",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 5
+    },
+    {
+      "class_id": 3,
+      "name": "Reptiles",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    {
+      "class_id": 4,
+      "name": "Fish",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 3
+    },
+    {
+      "class_id": 5,
+      "name": "Amphibians",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    {
+      "class_id": 6,
+      "name": "Insects",
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "support": 2
+    },
+    {
+      "class_id": 7,
+      "name": "Other invertebrates",
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1": 0.8571428571428571,
+      "support": 3
+    }
+  ],
+  "confusion_matrix": {
+    "labels": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "label_names": [
+      "Mammals",
+      "Birds",
+      "Reptiles",
+      "Fish",
+      "Amphibians",
+      "Insects",
+      "Other invertebrates"
+    ],
+    "matrix": [
+      [
+        11,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ]
+    ],
+    "row_meaning": "actual class",
+    "column_meaning": "predicted class",
+    "cell_count_denominator": "absolute counts of held-out test examples"
+  },
+  "feature_importance": [
+    {
+      "feature": "milk",
+      "importance": 0.38228438228438216
+    },
+    {
+      "feature": "feathers",
+      "importance": 0.21561771561771567
+    },
+    {
+      "feature": "fins",
+      "importance": 0.1486013986013986
+    },
+    {
+      "feature": "backbone",
+      "importance": 0.08059248443863828
+    },
+    {
+      "feature": "predator",
+      "importance": 0.060516406670252834
+    },
+    {
+      "feature": "legs",
+      "importance": 0.052447552447552455
+    },
+    {
+      "feature": "aquatic",
+      "importance": 0.03371628371628371
+    },
+    {
+      "feature": "eggs",
+      "importance": 0.026223776223776227
+    },
+    {
+      "feature": "hair",
+      "importance": 0.0
+    },
+    {
+      "feature": "airborne",
+      "importance": 0.0
+    },
+    {
+      "feature": "toothed",
+      "importance": 0.0
+    },
+    {
+      "feature": "breathes",
+      "importance": 0.0
+    },
+    {
+      "feature": "venomous",
+      "importance": 0.0
+    },
+    {
+      "feature": "tail",
+      "importance": 0.0
+    },
+    {
+      "feature": "domestic",
+      "importance": 0.0
+    },
+    {
+      "feature": "catsize",
+      "importance": 0.0
+    }
+  ],
+  "classification_report": {
+    "1": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 11.0
+    },
+    "2": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 5.0
+    },
+    "3": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1.0
+    },
+    "4": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 3.0
+    },
+    "5": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1.0
+    },
+    "6": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1-score": 0.6666666666666666,
+      "support": 2.0
+    },
+    "7": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1-score": 0.8571428571428571,
+      "support": 3.0
+    },
+    "accuracy": 0.9615384615384616,
+    "macro avg": {
+      "precision": 0.9642857142857143,
+      "recall": 0.9285714285714286,
+      "f1-score": 0.9319727891156463,
+      "support": 26.0
+    },
+    "weighted avg": {
+      "precision": 0.9711538461538461,
+      "recall": 0.9615384615384616,
+      "f1-score": 0.9578754578754579,
+      "support": 26.0
+    }
+  },
+  "test_record_ids": [
+    94,
+    1,
+    72,
+    2,
+    16,
+    33,
+    44,
+    7,
+    52,
+    36,
+    29,
+    19,
+    63,
+    18,
+    90,
+    28,
+    79,
+    58,
+    80,
+    74,
+    3,
+    14,
+    20,
+    43,
+    86,
+    97
+  ],
+  "train_record_ids": [
+    73,
+    92,
+    35,
+    96,
+    88,
+    17,
+    67,
+    89,
+    93,
+    53,
+    45,
+    82,
+    41,
+    10,
+    24,
+    66,
+    69,
+    99,
+    23,
+    11,
+    62,
+    78,
+    56,
+    84,
+    50,
+    100,
+    64,
+    38,
+    54,
+    42,
+    34,
+    101,
+    31,
+    60,
+    13,
+    26,
+    61,
+    4,
+    27,
+    87,
+    9,
+    30,
+    91,
+    48,
+    8,
+    6,
+    47,
+    49,
+    25,
+    15,
+    32,
+    77,
+    37,
+    81,
+    40,
+    57,
+    12,
+    59,
+    85,
+    22,
+    65,
+    70,
+    68,
+    71,
+    75,
+    55,
+    51,
+    39,
+    46,
+    5,
+    95,
+    98,
+    83,
+    76,
+    21
+  ]
+}

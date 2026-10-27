@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WildMind: The Forgotten Species</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/world.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/interface.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#screen-station">Skip to research station</a>
+  <div class="app">
+    <header class="hud" id="game-hud">
+      <div class="hud-cluster">
+        <span class="hud-stat" id="hud-rank">Field Intern</span>
+        <span class="hud-stat" id="hud-discoveries">0 discoveries</span>
+        <span class="hud-stat" id="hud-points">0 rp</span>
+      </div>
+      <div class="hud-cluster">
+        <button class="pixel-btn ghost" id="journal-btn" type="button">Journal</button>
+        <button class="pixel-btn ghost" id="settings-btn" type="button">Settings</button>
+        <button class="pixel-btn ghost" data-nav="station" type="button">Station</button>
+      </div>
+    </header>
+
+    <section class="screen active" id="screen-intro" tabindex="-1">
+      <div class="sky">
+        <canvas class="fx-canvas" id="fx-intro"></canvas>
+        <div class="moon" aria-hidden="true"></div>
+        <div class="butterfly b"></div>
+        <div class="butterfly c"></div>
+        <div class="forest-layer forest-back"></div>
+        <div class="forest-layer forest-mid"></div>
+        <div class="station-building" aria-hidden="true">
+          <span class="window a"></span>
+          <span class="window b"></span>
+          <span class="window c"></span>
+        </div>
+        <div class="researcher" aria-hidden="true"></div>
+        <div class="forest-layer forest-front"></div>
+      </div>
+      <div class="intro-copy">
+        <p class="kicker">A wildlife investigation</p>
+        <h1>WILDMIND</h1>
+        <p class="subtitle">The Forgotten Species</p>
+        <p class="tagline">Seven families. Countless characteristics. Can you identify the unknown?</p>
+        <div class="intro-actions">
+          <button class="pixel-btn" id="enter-archive" type="button">Enter the archive</button>
+          <button class="pixel-btn secondary" id="how-it-works" type="button">How it works</button>
+          <button class="pixel-btn ghost" id="sound-toggle" type="button">Sound off</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-station" tabindex="-1">
+      <div class="sky" style="position:relative;min-height:42vh;">
+        <div class="forest-layer forest-mid"></div>
+        <div class="station-building" style="bottom:12%">
+          <span class="window a"></span><span class="window b"></span><span class="window c"></span>
+        </div>
+      </div>
+      <p class="kicker" style="padding:0 1rem">Central research station</p>
+      <div class="station-grid">
+        <button class="station-card" data-nav="lab" type="button">
+          <div class="station-icon" style="background:#8bcbc3"></div>
+          <h3>Specimen Lab</h3>
+          <p class="muted">Read traits. Ask the model. Compare with known labels when you have them.</p>
+          <span class="kicker">Enter</span>
+        </button>
+        <button class="station-card" data-nav="archive" type="button">
+          <div class="station-icon" style="background:#ffd17a"></div>
+          <h3>Wildlife Archive</h3>
+          <p class="muted">101 dataset animals arranged as a field journal.</p>
+          <span class="kicker">Enter</span>
+        </button>
+        <button class="station-card" data-nav="experiment" type="button">
+          <div class="station-icon" style="background:#b6a4e8"></div>
+          <h3>Experiment Chamber</h3>
+          <p class="muted">Change one trait and run the real model again.</p>
+          <span class="kicker">Enter</span>
+        </button>
+        <button class="station-card" data-nav="sanctuary" type="button">
+          <div class="station-icon" style="background:#8ca889"></div>
+          <h3>Living Sanctuary</h3>
+          <p class="muted">A quiet habitat that fills as you investigate families.</p>
+          <span class="kicker">Enter</span>
+        </button>
+        <button class="station-card" data-nav="observatory" type="button">
+          <div class="station-icon" style="background:#a7ddf5"></div>
+          <h3>Research Observatory</h3>
+          <p class="muted">Held-out accuracy, confusion matrix, and tree importance.</p>
+          <span class="kicker">Enter</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-lab" tabindex="-1">
+      <div class="lab-layout">
+        <div>
+          <p class="kicker" id="specimen-id">SPECIMEN #047</p>
+          <div class="specimen-chamber" id="specimen-art"></div>
+          <p id="specimen-desc" class="muted"></p>
+          <div class="mode-switch">
+            <button class="pixel-btn ghost" data-mode="known" type="button">Known animal</button>
+            <button class="pixel-btn ghost" data-mode="unknown" aria-pressed="true" type="button">Unknown specimen</button>
+          </div>
+          <label class="muted" for="known-select">Dataset record</label>
+          <select class="search" id="known-select"></select>
+        </div>
+        <div class="panel">
+          <div class="trait-grid" id="trait-mount"></div>
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem">
+            <button class="pixel-btn" id="analyze-btn" type="button">Analyze specimen</button>
+            <button class="pixel-btn secondary" id="reset-traits" type="button">Reset traits</button>
+            <button class="pixel-btn ghost" id="random-specimen" type="button">Random specimen</button>
+            <button class="pixel-btn ghost" data-nav="station" type="button">Back to station</button>
+          </div>
+          <div class="result-card panel" id="lab-result"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-archive" tabindex="-1">
+      <div class="archive-layout">
+        <div>
+          <h2>Wildlife Archive</h2>
+          <input class="search" id="archive-search" type="search" placeholder="Search animals">
+          <div class="archive-cats" id="archive-cats"></div>
+        </div>
+        <div>
+          <div id="archive-detail" class="panel"><p class="muted">Select a family or specimen.</p></div>
+          <div class="specimen-list" id="archive-list" style="margin-top:0.8rem"></div>
+          <button class="pixel-btn ghost" data-nav="station" type="button" style="margin-top:0.8rem">Back to station</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-experiment" tabindex="-1">
+      <div class="exp-layout">
+        <div class="panel">
+          <h2>Experiment Chamber</h2>
+          <p class="muted">Edits create a hypothetical combination. The model is run again on the server.</p>
+          <label for="exp-select">Specimen</label>
+          <select class="search" id="exp-select"></select>
+          <div id="exp-traits" class="toggles"></div>
+          <p id="exp-diff" class="muted"></p>
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem">
+            <button class="pixel-btn" id="run-experiment" type="button">Run experiment</button>
+            <button class="pixel-btn secondary" id="reset-experiment" type="button">Reset changes</button>
+            <button class="pixel-btn ghost" id="save-experiment" type="button">Save to journal</button>
+            <button class="pixel-btn ghost" data-nav="lab" type="button">Return to lab</button>
+          </div>
+        </div>
+        <div class="panel" id="exp-compare"></div>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-sanctuary" tabindex="-1">
+      <div style="padding:1rem">
+        <h2>Living Sanctuary</h2>
+        <p id="sanctuary-progress" class="muted"></p>
+        <p class="muted">Habitats are a game reward. The model does not score ecological suitability.</p>
+        <div class="sanctuary-scene">
+          <canvas class="fx-canvas" id="fx-sanctuary"></canvas>
+          <div class="habitat forest" data-habitat="forest"></div>
+          <div class="habitat canopy" data-habitat="canopy"></div>
+          <div class="habitat pond" data-habitat="pond"></div>
+          <div class="habitat wetland" data-habitat="wetland"></div>
+          <div class="habitat rocks" data-habitat="rocks"></div>
+          <div class="habitat meadow" data-habitat="meadow"></div>
+          <div class="habitat tide" data-habitat="tide"></div>
+          <div class="habitat garden" data-habitat="garden"></div>
+        </div>
+        <div class="panel" style="margin-top:1rem">
+          <h3>Pattern Garden</h3>
+          <p class="muted">A short memory sequence. It is not a scientific test of intelligence.</p>
+          <div id="garden-pad" class="legs-picker">
+            <button data-flower type="button">Moon lily</button>
+            <button data-flower type="button">Sage cap</button>
+            <button data-flower type="button">Tide bloom</button>
+            <button data-flower type="button">Gold fern</button>
+          </div>
+          <p id="garden-status" class="muted">Press start, watch the glow, then repeat it.</p>
+          <button class="pixel-btn secondary" id="garden-start" type="button">Start / restart</button>
+        </div>
+        <button class="pixel-btn ghost" data-nav="station" type="button">Back to station</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-observatory" tabindex="-1">
+      <div class="obs-layout">
+        <div class="panel" id="obs-root"><p class="muted">Loading evaluation…</p></div>
+        <div>
+          <button class="pixel-btn ghost" data-nav="station" type="button">Back to station</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="dialog-backdrop" id="how-dialog">
+    <div class="dialog panel" role="dialog" aria-labelledby="how-title">
+      <h2 id="how-title">How it works</h2>
+      <p>WildMind uses a trained decision-tree classifier on the UCI Zoo dataset.</p>
+      <p>You supply sixteen characteristics. The model predicts one of seven dataset families.</p>
+      <p>Predictions can be wrong. Confidence is the model's own probability estimate and is not a guarantee.</p>
+      <button class="pixel-btn" data-close type="button">Return to intro</button>
+    </div>
+  </div>
+  <div class="dialog-backdrop" id="tutorial-dialog">
+    <div class="dialog panel" role="dialog">
+      <h2>Welcome to the station</h2>
+      <p>Start in the Specimen Lab. Load a known animal or invent an unknown combination, then analyze.</p>
+      <button class="pixel-btn" data-close type="button">Begin</button>
+    </div>
+  </div>
+  <div class="dialog-backdrop" id="journal-dialog">
+    <div class="dialog panel" role="dialog">
+      <h2>Field journal</h2>
+      <div id="journal-body" class="journal-list"></div>
+      <h3>Saved experiments</h3>
+      <div id="journal-notes"></div>
+      <button class="pixel-btn" data-close type="button">Close</button>
+    </div>
+  </div>
+  <div class="dialog-backdrop" id="settings-dialog">
+    <div class="dialog panel" role="dialog">
+      <h2>Settings</h2>
+      <label><input type="checkbox" id="reduced-motion"> Reduce motion</label>
+      <p class="muted">Progress is stored only in this browser.</p>
+      <button class="pixel-btn secondary" id="reset-progress" type="button">Reset progress</button>
+      <button class="pixel-btn" data-close type="button">Close</button>
+    </div>
+  </div>
+  <div class="status-banner panel" id="status-banner" role="status"></div>
+  <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

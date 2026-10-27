@@ -1,0 +1,46 @@
+@keyframes drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(-12px); }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 6px #ffd17a; }
+  to { box-shadow: 0 0 16px #ffd17a; }
+}
+
+.researcher,
+.moon,
+.window {
+  animation: glow 2.8s ease-in-out infinite alternate;
+}
+
+.butterfly {
+  position: absolute;
+  width: 10px;
+  height: 8px;
+  background: #ffd17a;
+  animation: drift 3s ease-in-out infinite alternate;
+}
+
+.butterfly.b { left: 22%; top: 30%; animation-delay: 0.4s; }
+.butterfly.c { left: 70%; top: 40%; animation-delay: 1s; background: #b6a4e8; }
+
+.analyzing .specimen-chamber {
+  animation: glow 0.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+body.reduced-motion *,
+body.reduced-motion *::before,
+body.reduced-motion *::after {
+  animation: none !important;
+  scroll-behavior: auto !important;
+}
